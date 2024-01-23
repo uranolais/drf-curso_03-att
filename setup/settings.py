@@ -39,16 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'escola',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'setup.urls'
@@ -129,13 +132,18 @@ REST_FRAMEWORK = {
     #     'rest_framework.permissions.IsAuthenticated',
     #     'rest_framework.permissions.DjangoModelPermissions'
     # ],
-    'DEFAULT_AUTHENTICATION_CLASSES':[
-        'rest_framework.authentication.BasicAuthentication',
-    ],
+    # 'DEFAULT_AUTHENTICATION_CLASSES':[
+    #     'rest_framework.authentication.BasicAuthentication',
+    # ],
      'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '5/day'
+        'anon': '100/day'
     }
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+
+]
